@@ -21,7 +21,7 @@ steps:
     templateLocation: 'URL of the file'
     csmFileLink: 'https://raw.githubusercontent.com/ikochev/BicepRepo/master/azuredeployModule.bicep'
     overrideParameters: |
-      -storagePrefix "devopsci"
-      -webAppName "devopsci"
+      '-storagePrefix "devopsci"'
+      '-webAppName "devopsci"'
     deploymentMode: 'Incremental'
     deploymentName: 'AzureDevOpsCI_BicepDeployment'
