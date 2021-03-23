@@ -1,0 +1,27 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: AzureResourceManagerTemplateDeployment@3
+  inputs:
+    deploymentScope: 'Resource Group'
+    azureResourceManagerConnection: 'IT-SharedServices-test(5c215e48-1b15-4e94-b85c-d8943a8cbcc3)'
+    subscriptionId: '5c215e48-1b15-4e94-b85c-d8943a8cbcc3'
+    action: 'Create Or Update Resource Group'
+    resourceGroupName: 'ikochevrg'
+    location: 'West Europe'
+    templateLocation: 'URL of the file'
+    csmFileLink: 'https://raw.githubusercontent.com/ikochev/BicepRepo/master/azuredeployModule.bicep'
+    overrideParameters: |
+      -storagePrefix "devopsci"
+      -webAppName "devopsci"
+    deploymentMode: 'Incremental'
+    deploymentName: 'AzureDevOpsCI_BicepDeployment'
